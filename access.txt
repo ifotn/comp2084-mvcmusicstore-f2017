@@ -1,0 +1,6 @@
+Azure SQL Server
+
+Host: comp2084-f2017.database.windows.net
+Dbname: comp2084-f2017
+Un: mvcdba
+Pw: Music123$
