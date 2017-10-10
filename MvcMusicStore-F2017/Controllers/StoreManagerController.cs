@@ -18,8 +18,26 @@ namespace MvcMusicStore_F2017.Controllers
         public ActionResult Index()
         {
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
-            return View(albums.ToList());
+            ViewBag.AlbumCount = albums.Count();
+            return View(albums.ToList().OrderBy(a => a.Artist.Name).ThenBy(a => a.Title));
         }
+
+        // POST: Store/Manager - search by Title
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(string Title)
+        {
+            // get only albums that contain the keyword(s) in the title
+            var albums = from a in db.Albums
+                         where a.Title.Contains(Title)
+                         orderby a.Artist.Name, a.Title
+                         select a;
+
+            ViewBag.AlbumCount = albums.Count();
+            ViewBag.SearchTerm = Title;
+            return View(albums);
+        }
+
 
         // GET: StoreManager/Details/5
         public ActionResult Details(int? id)
