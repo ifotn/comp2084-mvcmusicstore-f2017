@@ -5,10 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.AlbumCount Albums
-    
-    @ViewBag.SearchTerm
-    </h2>
+<h2>@ViewBag.AlbumCount Albums @ViewBag.SearchTerm</h2>
 
 <section class="col-md-3">
     @Html.ActionLink("Create New", "Create")
