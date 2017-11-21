@@ -10,6 +10,7 @@ using MvcMusicStore_F2017.Models;
 
 namespace MvcMusicStore_F2017.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class StoreManagerController : Controller
     {
         private MusicStoreModel db = new MusicStoreModel();
@@ -38,7 +39,7 @@ namespace MvcMusicStore_F2017.Controllers
             return View(albums);
         }
 
-
+        [AllowAnonymous]
         // GET: StoreManager/Details/5
         public ActionResult Details(int? id)
         {
